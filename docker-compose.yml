@@ -5,7 +5,15 @@ services:
     build:
       context: ./llm  # Directory containing the Dockerfile for the first application
     ports:
-      - "4000:4000"  
+      - "4000:4000"
+
+  elasticsearch:
+    build: 
+      context: ./elasticsearch
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
 
   object-detection:
     build:
@@ -21,4 +29,5 @@ services:
     ports:
       - "8000:8000"  
     depends_on:
+      - elasticsearch
       - object-detection  # Ensure that the object-detection container is started before yolov5-app
