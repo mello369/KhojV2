@@ -22,4 +22,3 @@ services:
       - "8000:8000"  
     depends_on:
       - object-detection  # Ensure that the object-detection container is started before yolov5-app
-
