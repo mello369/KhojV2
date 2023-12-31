@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  llm:
+    build:
+      context: ./llm  # Directory containing the Dockerfile for the first application
+    ports:
+      - "4000:4000"  
+
+  object-detection:
+    build:
+      context: ./object-detection  # Directory containing the Dockerfile for the second application
+    ports:
+      - "6000:6000"  
+    depends_on:
+      - llm  # Ensure that the llm container is started before yolov5-app
+
+  search:
+    build:
+      context: ./search  # Directory containing the Dockerfile for the second application
+    ports:
+      - "8000:8000"  
+    depends_on:
+      - object-detection  # Ensure that the object-detection container is started before yolov5-app
+
