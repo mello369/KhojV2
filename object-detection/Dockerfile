@@ -1,8 +1,8 @@
 FROM python:3.8-slim
 
-WORKDIR /yolov5-app
+WORKDIR /object-detection
 
-COPY . /yolov5-app
+COPY . /object-detection
 
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
